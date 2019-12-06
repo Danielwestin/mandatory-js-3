@@ -1,0 +1,162 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "helvetica neue";
+  font-weight: 100;
+}
+body{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header{
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: solid black 1px;
+}
+
+.headLogo{
+  width: 30%;
+  height: 160px;
+  background-image: url("images/harley6.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin-bottom: 50px;
+  background-color: lightgray;
+}
+
+.headNav{
+  width: 70%;
+  height: 160px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* ------------------dogs---------------------*/
+
+.button{
+  width: 300px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  padding-top: 10px;
+  font-size: 35px;
+  font-family: "helvetica Neue";
+  font-weight: 100;
+  position: relative;
+  outline: none;
+  margin-left: 140px;
+}
+
+.button::after{
+  content: "";
+  position: absolute;
+  background-color: black;
+  width: 0%;
+  height: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0px;
+  border-radius: 10px;
+  transition: all 500ms ease;
+}
+
+.button:hover::after{
+  width: 80%;
+}
+
+
+nav {
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 20%;
+  height: 600px;
+  overflow: scroll;
+  text-align: center;
+  font-size: 18px;
+}
+.blackline1 {
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 20%;
+  height: 1px;
+  background-color: black;
+}
+
+ul li:hover{
+  cursor: pointer;
+}
+
+/* ul{
+  padding-top: 20px;
+} */
+
+section{
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 20%;
+  height: 570px;
+  text-align: center;
+  font-size: 22px;
+}
+
+section ul li{
+  list-style: none;
+}
+
+.blackline2 {
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 20%;
+  height: 1px;
+  background-color: black;
+}
+
+main {
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-top: 20px;
+  width: 55%;
+  min-height: 470px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.blackline3 {
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-top: 20px;
+  width: 55%;
+  height: 1px;
+  background-color: black;
+}
+
+.pictures{
+  width: 40%;
+  height: 600px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.pictures img {
+  width: 100%;
+  height: 33%;
+  border-radius: 10%;
+}
+
+footer{
+  width: 100%;
+  height: 50px;
+  background-color: lightgray;
+}

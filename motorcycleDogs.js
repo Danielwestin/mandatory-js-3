@@ -12,14 +12,15 @@ h1.textContent = "";
 
 //---------------------GÖR STOR FÖRSTA BOKSTAV------------------------//
 function big(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+//---------------------GÖR LITEN BOKSTAV------------------------//
 function small(string) {
-    return string.charAt(0).toLowerCase() + string.slice(1);
+  return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
-
+//---------------------HÄMTAR HEM LISTAN PÅ ALLA RASER------------------------//
 function listAllBreeds(){
   let currentBreed = window.location.hash.substring(1);
     axios.get('https://dog.ceo/api/breeds/list/all')
@@ -27,19 +28,19 @@ function listAllBreeds(){
       renderAllBreeds(response.data.message);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
 }
 listAllBreeds();
 
-
-
+//---------------------SKRIVER UT LISTAN PÅ ALLA RASER------------------------//
 function renderAllBreeds(data){
   let ul = document.createElement("ul");
   nav.appendChild(ul);
   for (let dog in data){
     let li = document.createElement("li");
     li.textContent = big(dog);
+
     li.addEventListener("click", function(e){
       window.location.hash = small(e.target.textContent);
       pictures.innerHTML = "";
@@ -51,9 +52,7 @@ function renderAllBreeds(data){
   };
 };
 
-
-
-
+//---------------------HÄMTAR HEM LISTA PÅ ALLA UNDER-RASER------------------------//
 function listSubBreeds(){
   let currentBreed = window.location.hash.substring(1);
     axios.get('https://dog.ceo/api/breed/' + currentBreed + '/list')
@@ -62,34 +61,33 @@ function listSubBreeds(){
       renderSubBreeds(response.data.message);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
 }
 
+//---------------------SKRIVER UT LISTAN PÅ ALLA UNDER-RASER------------------------//
 function renderSubBreeds(data){
   if (data.length > 0){
     sectionUl.innerHTML = "";
     let currentBreed = window.location.hash.substring(1);
-    // let ul = document.createElement("ul");
-    // section.appendChild(ul);
 
-    for (let key of data){
+    for (let key of data) {
       let li = document.createElement("li");
       li.textContent = big(key);
       sectionUl.appendChild(li);
 
-        li.addEventListener('click', function (e) {
-          window.location.hash = currentBreed + "/" + small(e.target.textContent);
-          pictures.innerHTML = "";
-          getBreedImg();
-            });
-        }
-      } else {
-        sectionUl.innerHTML = "";
-      }
+      li.addEventListener('click', function (e) {
+        window.location.hash = currentBreed + "/" + small(e.target.textContent);
+        pictures.innerHTML = "";
+        getBreedImg();
+      });
+    }
+  } else {
+    sectionUl.innerHTML = "";
+  }
 }
 
-
+//---------------------HÄMTAR HEM BILDER PÅ RANDOM-HUNDAR------------------------//
 function getRandomImg(){
   console.log("hej");
   let currentBreed = window.location.hash.substring(1);
@@ -100,11 +98,11 @@ function getRandomImg(){
       console.log(response);
     })
     .catch(function (error) {
-      console.log("error");
+      console.error(error);
     });
 };
 
-
+//---------------------SKRIVER UT BILDER PÅ RANDOM-HUNDAR------------------------//
 function renderRandomImg(response){
     for (let images of response){
       let img = document.createElement("img");
@@ -113,18 +111,20 @@ function renderRandomImg(response){
     }
 };
 
-
+//---------------------UPPDATERAR BILDERNA BEROENDE PÅ VAD,--------
+//--------------------SOM STÅR I HASHEN------------------------//
 button.addEventListener("click", () => {
   if (window.location.hash !== "") {
-      pictures.innerHTML = "";
-      getBreedImg();
-      listSubBreeds();
+    pictures.innerHTML = "";
+    getBreedImg();
+    listSubBreeds();
   } else {
-      pictures.innerHTML = "";
-      getRandomImg();
+    pictures.innerHTML = "";
+    getRandomImg();
   }
 });
 
+//---------------------HÄMTAR HEM BILDER PÅ SPECIFIK HUND------------------------//
 function getBreedImg(){
   let currentBreed = window.location.hash.substring(1);
     axios.get("https://dog.ceo/api/breed/"+currentBreed+"/images/random/3")
@@ -132,10 +132,11 @@ function getBreedImg(){
       renderBreedImg(response.data.message);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
 };
 
+//---------------------SKRIVER UT BILDER PÅ SPECIFIK HUND------------------------//
 function renderBreedImg(response){
   for (let images of response){
     let img = document.createElement("img");
@@ -145,7 +146,7 @@ function renderBreedImg(response){
   setCurrentBreed();
 };
 
-
+//---------------------SKRIVER UT VILKEN HUND-RAS SOM VISAS------------------------//
 function setCurrentBreed() {
   let hash = window.location.hash.substring(1).split("/");
   h1.textContent = "";
@@ -156,8 +157,8 @@ function setCurrentBreed() {
   }
 }
 
-
-
+//---------------------VILKEN FUNKTION SOM SKA KÖRAS,------
+// -----BEROENDE PÅ VAD SOM ÄR SATT I HASH------------------------//
 if (window.location.hash !== "") {
   pictures.innerHTML = "";
   listSubBreeds();
